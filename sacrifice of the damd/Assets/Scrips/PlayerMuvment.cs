@@ -8,14 +8,26 @@ public class PlayerMuvment : MonoBehaviour
     [SerializeField]
     float muvmentSpeed;
 
-
     Rigidbody2D rb;
     Vector2 muvment;
 
     //[Header("Weapon")]
+    [Header("Sprite Rotation")]
+    [SerializeField]
+    GameObject playerSprit;
+    [SerializeField]
+    Sprite lookOp;
+    [SerializeField]
+    Sprite LookDown;
+    [SerializeField]
+    Sprite lookLeft;
+    [SerializeField]
+    Sprite lookRight;
+
     Camera cam;
     Vector2 mus;
-
+    float lookDiraktion;
+    SpriteRenderer playerSpritSR;
 
 
     // Start is called before the first frame update
@@ -23,6 +35,7 @@ public class PlayerMuvment : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        playerSpritSR = playerSprit.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -31,21 +44,50 @@ public class PlayerMuvment : MonoBehaviour
         muvment.y = Input.GetAxisRaw("Vertical");
         muvment.x = Input.GetAxisRaw("Horizontal");
 
-        mus = cam.ScreenToWorldPoint(Input.mousePosition);
-
         Kniv();
+        SpriteDiraktion();
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         rb.MovePosition(rb.position + muvment * muvmentSpeed);
 
         Vector2 look = mus - rb.position;
-        rb.rotation = Mathf.Atan2(look.y, look.x) * Mathf.Rad2Deg;
+        lookDiraktion = (Mathf.Atan2(look.y, look.x) * Mathf.Rad2Deg);
     }
 
     void Kniv()
     {
         
+    }
+
+    void SpriteDiraktion()
+    {
+        mus = cam.ScreenToWorldPoint(Input.mousePosition);
+        //print(lookDiraktion);
+
+        if (45f < lookDiraktion && lookDiraktion < 135f)
+        {
+            //print("up");
+            playerSpritSR.sprite = lookOp;
+        }
+
+        if (-45f > lookDiraktion && lookDiraktion > -135f)
+        {
+            //print("down");
+            playerSpritSR.sprite = LookDown;
+        }
+
+        if (135f < lookDiraktion || lookDiraktion < -135f)
+        {
+            //print("left");
+            playerSpritSR.sprite = lookLeft;
+        }
+
+        if (45f > lookDiraktion && lookDiraktion > -45f)
+        {
+            //print("right");
+            playerSpritSR.sprite = lookRight;
+        }
     }
 }
