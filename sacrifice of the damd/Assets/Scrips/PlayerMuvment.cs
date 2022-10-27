@@ -11,7 +11,7 @@ public class PlayerMuvment : MonoBehaviour
     Rigidbody2D rb;
     Vector2 muvment;
 
-    //[Header("Weapon")]
+    
     [Header("Sprite Rotation")]
     [SerializeField]
     GameObject playerSprit;
@@ -29,11 +29,14 @@ public class PlayerMuvment : MonoBehaviour
     float lookDiraktion;
     SpriteRenderer playerSpritSR;
 
+    [Header("Weapon")]
+    public float weaponDiraktion;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = this.GetComponent<Rigidbody2D>();
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         playerSpritSR = playerSprit.GetComponent<SpriteRenderer>();
     }
@@ -44,21 +47,16 @@ public class PlayerMuvment : MonoBehaviour
         muvment.y = Input.GetAxisRaw("Vertical");
         muvment.x = Input.GetAxisRaw("Horizontal");
 
-        Kniv();
         SpriteDiraktion();
     }
 
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + muvment * muvmentSpeed);
+        rb.MovePosition(rb.position + muvment * muvmentSpeed * Time.deltaTime);
 
         Vector2 look = mus - rb.position;
         lookDiraktion = (Mathf.Atan2(look.y, look.x) * Mathf.Rad2Deg);
-    }
-
-    void Kniv()
-    {
-        
+        weaponDiraktion = lookDiraktion;
     }
 
     void SpriteDiraktion()
