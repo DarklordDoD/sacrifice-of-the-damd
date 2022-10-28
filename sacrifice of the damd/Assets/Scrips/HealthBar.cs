@@ -5,9 +5,12 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
+    
     Slider healthSlider;
     [SerializeField]
     int healthOplooftetI = 1;
+    [SerializeField]
+    GameObject healthIndikator;
 
     private void Start()
     {
@@ -22,6 +25,11 @@ public class HealthBar : MonoBehaviour
     public void SetHealth(int health)
     {
         healthSlider.value = Mathf.Pow(health, healthOplooftetI);
+        
+        if (health <= 0)
+        {
+            healthIndikator.SetActive(false);
+        }
     }
 
 }

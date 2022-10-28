@@ -20,7 +20,9 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     float returnSpeed;
     [SerializeField]
-    float returnDelay; 
+    float returnDelay;
+    [SerializeField]
+    int knivDamage;
     public float attackReddy;
 
     // Start is called before the first frame update
@@ -29,6 +31,7 @@ public class Weapon : MonoBehaviour
         rb = this.GetComponent<Rigidbody2D>();
         playerInfo = player.GetComponent<Transform>();
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        this.GetComponent<Damage>().damage = 0;
     }
 
     // Update is called once per frame
@@ -37,7 +40,7 @@ public class Weapon : MonoBehaviour
         if (attackReddy >= 0)
         {
             attackReddy -= Time.deltaTime;
-        }
+        } 
     }
 
     private void FixedUpdate()
@@ -47,6 +50,7 @@ public class Weapon : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Mouse0))
             {
+                this.GetComponent<Damage>().damage = knivDamage;
                 transform.position = Vector2.MoveTowards(transform.position, cam.ScreenToWorldPoint(Input.mousePosition), attackForce * Time.deltaTime);
                 attackReddy = attackDelay;
             }
@@ -54,6 +58,7 @@ public class Weapon : MonoBehaviour
 
         if (attackReddy <= returnDelay)
         {
+            this.GetComponent<Damage>().damage = 0;
             transform.position = Vector2.MoveTowards(transform.position, playerInfo.position, returnSpeed * Time.deltaTime);
         }
     }

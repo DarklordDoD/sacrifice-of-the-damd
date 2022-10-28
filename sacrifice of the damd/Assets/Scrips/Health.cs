@@ -4,30 +4,32 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-
-    [SerializeField]
-    HealthBar healthBar;
+    
     [SerializeField]
     int maxHealth;
     [SerializeField]
     float invincibilityTime;
-    [SerializeField]
+
     float invincibility;
+    [SerializeField]
     int currentHealth;
+
+    [Header("Health Bar")]
+    [SerializeField]
+    bool hasHealthBar;
+    [SerializeField]
+    HealthBar healthBar;
 
     // Start is called before the first frame update
     void Start()
-    {
-        healthBar.SetMaxHealth(maxHealth);
+    {       
         invincibility = invincibilityTime;
         currentHealth = maxHealth;
-        healthBar.SetHealth(currentHealth);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (hasHealthBar)
+        {
+            healthBar.SetMaxHealth(maxHealth);
+            healthBar.SetHealth(currentHealth);
+        }
     }
 
     private void FixedUpdate()
@@ -43,9 +45,22 @@ public class Health : MonoBehaviour
     {
         if (invincibility <= 0)
         {
-            currentHealth = currentHealth - damage;
-            healthBar.SetHealth(currentHealth);
+            currentHealth = currentHealth - damage;         
             invincibility = invincibilityTime;
+            if (hasHealthBar)
+            {
+                healthBar.SetHealth(currentHealth);
+            }
+
+            if (currentHealth <= 0)
+            {
+                Death();
+            }
         }
+    }
+
+    void Death()
+    {
+        Destroy(gameObject);
     }
 }
