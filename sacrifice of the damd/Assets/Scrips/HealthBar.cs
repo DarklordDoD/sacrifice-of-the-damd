@@ -5,10 +5,9 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    
     Slider healthSlider;
     [SerializeField]
-    int healthOplooftetI = 1;
+    float healthOplooftetI = 1;
     [SerializeField]
     GameObject healthIndikator;
 

@@ -52,7 +52,7 @@ public class PlayerMuvment : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + muvment * muvmentSpeed * Time.deltaTime);
+        rb.MovePosition(rb.position + muvment.normalized * muvmentSpeed * Time.deltaTime);
 
         Vector2 look = mus - rb.position;
         lookDiraktion = (Mathf.Atan2(look.y, look.x) * Mathf.Rad2Deg);
