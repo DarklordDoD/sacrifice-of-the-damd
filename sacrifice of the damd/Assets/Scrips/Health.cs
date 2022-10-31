@@ -19,7 +19,8 @@ public class Health : MonoBehaviour
     [SerializeField]
     bool hasHealthBar;
     [SerializeField]
-    HealthBar healthBar;
+    GameObject healthBar;
+    HealthBar healthIndikator;
 
     // Start is called before the first frame update
     void Start()
@@ -28,8 +29,9 @@ public class Health : MonoBehaviour
         currentHealth = maxHealth;
         if (hasHealthBar)
         {
-            healthBar.SetMaxHealth(maxHealth);
-            healthBar.SetHealth(currentHealth);
+            healthIndikator = healthBar.GetComponent<HealthBar>();
+            healthIndikator.SetMaxHealth(maxHealth);
+            healthIndikator.SetHealth(currentHealth);
         }
     }
 
@@ -50,7 +52,7 @@ public class Health : MonoBehaviour
             invincibility = invincibilityTime;
             if (hasHealthBar)
             {
-                healthBar.SetHealth(currentHealth);
+                healthIndikator.SetHealth(currentHealth);
             }
 
             if (currentHealth <= 0)
