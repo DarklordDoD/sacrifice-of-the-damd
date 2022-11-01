@@ -12,7 +12,7 @@ public class HealthBar : MonoBehaviour
     [SerializeField]
     float healthOplooftetI = 1;
 
-    private void Start()
+    private void Awake()
     {
         healthSlider = this.GetComponent<Slider>();
     }

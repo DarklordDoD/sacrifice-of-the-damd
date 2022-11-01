@@ -15,6 +15,10 @@ public class Health : MonoBehaviour
     [SerializeField]
     int currentHealth;
 
+    [SerializeField]
+    GameObject sceneManeger;
+    SceneManeger deathDetect;
+
     [Header("Health Bar")]
     [SerializeField]
     bool hasHealthBar;
@@ -32,6 +36,10 @@ public class Health : MonoBehaviour
             healthIndikator = healthBar.GetComponent<HealthBar>();
             healthIndikator.SetMaxHealth(maxHealth);
             healthIndikator.SetHealth(currentHealth);
+        }
+        if (sceneManeger != null)
+        {
+            deathDetect = sceneManeger.GetComponent<SceneManeger>();
         }
     }
 
@@ -56,14 +64,13 @@ public class Health : MonoBehaviour
             }
 
             if (currentHealth <= 0)
-            {
-                Death();
+            {            
+                if (sceneManeger != null)
+                {
+                    deathDetect.RestartLevel();
+                }
+                Destroy(gameObject);
             }
         }
-    }
-
-    void Death()
-    {
-        Destroy(gameObject);
     }
 }

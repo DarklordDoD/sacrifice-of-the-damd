@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Door : MonoBehaviour
 {
     [SerializeField]
     string nextScene;
-    [SerializeField]
     public bool isLock;
+    [SerializeField]
+    GameObject sceneManeger;
 
     void OnCollisionEnter2D(Collision2D col)
     {
@@ -16,8 +17,7 @@ public class Door : MonoBehaviour
         {
             if(!isLock)
             {
-                //SceneManager.LoadScene(nextScene);
-                print("nextScene");
+                sceneManeger.GetComponent<SceneManeger>().NextLevel(nextScene);
             } else
             {
                 print("LockedDoor");

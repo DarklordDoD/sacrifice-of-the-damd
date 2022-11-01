@@ -256,6 +256,7 @@ GameObject:
   - component: {fileID: 5750596686802399634}
   - component: {fileID: 5750596686802399637}
   - component: {fileID: 5750596686802399638}
+  - component: {fileID: 1898502593}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -320,6 +321,7 @@ MonoBehaviour:
   lookLeft: {fileID: 1650189623, guid: 61e0dee697fee004b974f181e70547a9, type: 3}
   lookRight: {fileID: -1646683334, guid: 61e0dee697fee004b974f181e70547a9, type: 3}
   weaponDiraktion: 0
+  walkAround: {fileID: 0}
 --- !u!70 &5750596686802399637
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -351,5 +353,26 @@ MonoBehaviour:
   maxHealth: 100
   invincibilityTime: 1
   currentHealth: 0
+  sceneManeger: {fileID: 0}
   hasHealthBar: 1
   healthBar: {fileID: 0}
+--- !u!95 &1898502593
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5750596686802399633}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
