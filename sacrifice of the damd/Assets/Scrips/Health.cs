@@ -12,7 +12,6 @@ public class Health : MonoBehaviour
     float invincibilityTime;
 
     float invincibility;
-    [SerializeField]
     int currentHealth;
 
     [SerializeField]

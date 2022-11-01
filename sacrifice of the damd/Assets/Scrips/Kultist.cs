@@ -21,12 +21,15 @@ public class Kultist : MonoBehaviour
     List<float> pause;
 
     Rigidbody2D rb;
+    [SerializeField]
     int nextPoint = 0;
     float pointDistance;
-    [SerializeField]
     int nextPause = 0;
-    [SerializeField]
     float pauseEnd;
+
+    HumanAnimation animationControler;
+    float lookDiraktion;
+    Vector2 animetWalk;
 
     // Start is called before the first frame update
     void Awake()
@@ -44,7 +47,6 @@ public class Kultist : MonoBehaviour
                     walkPath.Add(walkPoints[i].position);
                 }
             }
-            //print(i);
         }
         walkPath.Add(transform.position);
         pause.Add(0);
@@ -54,18 +56,23 @@ public class Kultist : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         DistanceToPoint(transform.position, walkPath[nextPoint]);
-        //print(walkPath.Count);
+        animationControler = this.GetComponent<HumanAnimation>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        Vector2 look = walkPath[nextPoint] - rb.position;
+        lookDiraktion = (Mathf.Atan2(look.y, look.x) * Mathf.Rad2Deg);
+
+        animationControler.SpriteDiraktion(lookDiraktion, animetWalk);
+
         PathWalk();
     }
 
     void PathWalk()
     {
-        
+        DistanceToPoint(transform.position, walkPath[nextPoint]);
         if (walkPath.Count - 1 > nextPoint)
         {        
             if (pointDistance < pointClosness)
@@ -86,10 +93,12 @@ public class Kultist : MonoBehaviour
                 if (pauseEnd > 0f)
                 {
                     pauseEnd -= 1 * Time.deltaTime;
+                    animetWalk.x = 0;
                 }
                 else
                 {
                     rb.position = Vector2.MoveTowards(transform.position, walkPath[nextPoint], walkSpeed * Time.deltaTime);
+                    animetWalk.x = 1;
                 }
             }
 
@@ -97,7 +106,6 @@ public class Kultist : MonoBehaviour
         {
             nextPoint = 0;
         }
-        DistanceToPoint(transform.position, walkPath[nextPoint]);
     }
 
     void DistanceToPoint(Vector2 p1, Vector2 p2)
