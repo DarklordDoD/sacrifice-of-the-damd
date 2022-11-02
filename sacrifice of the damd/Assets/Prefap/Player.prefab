@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 391325700, guid: 8f09dae3f5ef9a54c96910be39184322, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.9779874, b: 0.9779874, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -162,7 +162,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d6016adc2472b4d4386fac3450a3bf52, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -347,6 +347,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   invincibilityTime: 1
+  damageColor: {r: 1, g: 0, b: 0, a: 1}
+  damageColorTimer: 0.1
+  entetySprite: {fileID: 2301704152734239276}
   sceneManeger: {fileID: 0}
   hasHealthBar: 1
   healthBar: {fileID: 0}

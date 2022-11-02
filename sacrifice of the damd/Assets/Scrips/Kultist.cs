@@ -12,7 +12,9 @@ public class Kultist : MonoBehaviour
     [SerializeField]
     float pointClosness;
     [SerializeField]
-    bool loopWalk;
+    int loopFrom;
+    [SerializeField]
+    int loopPauseFrom;
     [SerializeField]
     List<Transform> walkPoints;
     [SerializeField]
@@ -21,7 +23,6 @@ public class Kultist : MonoBehaviour
     List<float> pause;
 
     Rigidbody2D rb;
-    [SerializeField]
     int nextPoint = 0;
     float pointDistance;
     int nextPause = 0;
@@ -84,7 +85,7 @@ public class Kultist : MonoBehaviour
                 }
                 else
                 {
-                    nextPause = 0;
+                    nextPause = loopPauseFrom;
                 }              
                 pauseEnd = pause[nextPause];
             } 
@@ -102,9 +103,13 @@ public class Kultist : MonoBehaviour
                 }
             }
 
-        } else if (loopWalk)
+        } else if (loopFrom < walkPath.Count)
         {
-            nextPoint = 0;
+            nextPoint = loopFrom;
+        } 
+        else
+        {
+            animetWalk.x = 0;
         }
     }
 

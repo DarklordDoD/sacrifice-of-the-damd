@@ -8,6 +8,12 @@ public class Key : MonoBehaviour
     GameObject lockedDoor;
     [SerializeField]
     bool remuveKey;
+    Animator aabenDoor;
+
+    void Start()
+    {
+        aabenDoor = this.GetComponent<Animator>();
+    }
 
     void OnTriggerEnter2D(Collider2D col)
     {
@@ -15,6 +21,7 @@ public class Key : MonoBehaviour
         {
 
             lockedDoor.GetComponent<Door>().isLock = false;
+            aabenDoor.SetBool("Aktiv", true);
 
             if (remuveKey)
             {

@@ -1,13 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class SceneManeger : MonoBehaviour
 {
     [SerializeField]
     string startScene;
+
+    public static int playerHealth;
+
+    private void Awake()
+    {
+        if (SceneManager.GetSceneByName(startScene) == SceneManager.GetActiveScene())
+        {
+            playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>().maxHealth;
+        }
+    }
 
     public void QuitGame()
     {
