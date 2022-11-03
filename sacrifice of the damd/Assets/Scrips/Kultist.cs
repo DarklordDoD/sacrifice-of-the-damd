@@ -28,6 +28,10 @@ public class Kultist : MonoBehaviour
     int nextPause = 0;
     float pauseEnd;
 
+    float soundTime;
+    [SerializeField]
+    float soundDelay;
+
     HumanAnimation animationControler;
     float lookDiraktion;
     Vector2 animetWalk;
@@ -98,6 +102,16 @@ public class Kultist : MonoBehaviour
                 }
                 else
                 {
+                    if (soundTime <= 0f)
+                    {
+                        soundTime = soundDelay;
+                        FindObjectOfType<AudioManager>().PlaySound("KultistWalk", true, Random.Range(0.2f, 0.4f), Random.Range(0.8f, 1.2f));
+                    }
+                    else if (soundTime > 0f)
+                    {
+                        soundTime -= Time.deltaTime;
+                    }
+                    
                     rb.position = Vector2.MoveTowards(transform.position, walkPath[nextPoint], walkSpeed * Time.deltaTime);
                     animetWalk.x = 1;
                 }

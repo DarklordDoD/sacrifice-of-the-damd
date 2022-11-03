@@ -64,6 +64,7 @@ MonoBehaviour:
   pause:
   - 10
   - 2
+  soundDelay: 0.4
 --- !u!114 &7396130601193533515
 MonoBehaviour:
   m_ObjectHideFlags: 0

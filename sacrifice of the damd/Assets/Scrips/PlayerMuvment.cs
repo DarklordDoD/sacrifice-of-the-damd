@@ -7,6 +7,9 @@ public class PlayerMuvment : MonoBehaviour
     [SerializeField]
     float muvmentSpeed;
 
+    [SerializeField]
+    float soundDelay;
+
     Rigidbody2D rb;
     Vector2 muvment;
 
@@ -14,6 +17,7 @@ public class PlayerMuvment : MonoBehaviour
     Vector2 mus;
     float lookDiraktion;
     HumanAnimation animationControler;
+    float soundTime;
 
     [HideInInspector]
     public float weaponDiraktion;  
@@ -31,6 +35,16 @@ public class PlayerMuvment : MonoBehaviour
     {
         muvment.y = Input.GetAxisRaw("Vertical");
         muvment.x = Input.GetAxisRaw("Horizontal");
+
+        if ((muvment.y != 0f || muvment.x != 0f) && soundTime <= 0f) 
+        {
+            soundTime = soundDelay;
+            FindObjectOfType<AudioManager>().PlaySound("PlayerWalk", true, Random.Range(0.4f, 0.6f), Random.Range(0.8f, 1.2f));
+        }
+        else if (soundTime > 0f)
+        {
+            soundTime -= Time.deltaTime;
+        }
 
         mus = cam.ScreenToWorldPoint(Input.mousePosition);
 

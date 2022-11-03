@@ -280,7 +280,7 @@ Transform:
   - {fileID: 5750596686244131660}
   - {fileID: 2545791109884801023}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &5750596686802399635
 Rigidbody2D:
@@ -316,6 +316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   muvmentSpeed: 2
+  soundDelay: 0.4
   weaponDiraktion: 0
 --- !u!70 &5750596686802399637
 CapsuleCollider2D:

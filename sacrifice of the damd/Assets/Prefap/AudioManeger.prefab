@@ -45,7 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: 
-    clip: {fileID: 0}
+  - name: KnivAttack
+    clip: {fileID: 8300000, guid: 389d5ff71e0e47a469a1de032daa0fc5, type: 3}
     volume: 1
     pitch: 1
+    loop: 0
+    source: {fileID: 0}

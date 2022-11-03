@@ -99,6 +99,7 @@ public class Health : MonoBehaviour
 
         if (damage > 0)
         {
+            FindObjectOfType<AudioManager>().PlaySound("Damage", false, 0f, 0f);
             colorTimer = damageColorTimer;
             objectColor.color = damageColor;
         }

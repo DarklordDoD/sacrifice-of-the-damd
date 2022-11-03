@@ -47,6 +47,8 @@ public class Weapon : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Mouse0))
             {
+                FindObjectOfType<AudioManager>().PlaySound("KnivAttack", false, 0f, 0f);
+
                 this.GetComponent<Damage>().damage = knivDamage;
                 transform.position = Vector2.MoveTowards(transform.position, cam.ScreenToWorldPoint(Input.mousePosition), attackForce * Time.deltaTime);
                 attackReddy = attackDelay;
